@@ -1,23 +1,27 @@
 import { Controller, Get, Post, Put, Body, Param } from '@nestjs/common';
 import { CreateUniversityDto } from './dto/create-university.dto';
+import { UniversitiesService } from './universities.service';
+import { University } from './interfaces/university.interface';
 
 @Controller('universities')
 export class UniversitiesController {
-  //Testing Purposes
+  //inject dependency
+  constructor(private readonly universitiesService: UniversitiesService) {}
+
   //Get all Universities
   @Get()
-  findAlluniversities(): string {
-    return 'Get all items';
+  findAlluniversities(): University[] {
+    return this.universitiesService.findAlluniversities();
   }
 
   //Get a single University
-  //Takes in an id param, checks to see if an id matches id getting passed in.
+  //Takes in an id param, checks to see if an id matches id getting passed in
   @Get(':id')
-  findUniversity(@Param() param): string {
-    return `University ${param.id}`;
+  findUniversity(@Param('id') id): University {
+    return this.universitiesService.findUniversity(id);
   }
 
-  //Testing Purposes
+  //Creates a university
   @Post()
   createUniversity(@Body() _createUniversityDto: CreateUniversityDto): string {
     return `The City Name is: ${_createUniversityDto.city.name} id is ${_createUniversityDto.city.id}`;
