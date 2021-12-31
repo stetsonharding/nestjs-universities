@@ -23,16 +23,18 @@ export class UniversitiesController {
 
   //Creates a university
   @Post()
-  createUniversity(@Body() _createUniversityDto: CreateUniversityDto): string {
-    return `The City Name is: ${_createUniversityDto.city.name} id is ${_createUniversityDto.city.id}`;
+  createUniversity(
+    @Body() _createUniversityDto: CreateUniversityDto,
+  ): University {
+    return this.universitiesService.createUniversity(_createUniversityDto);
   }
 
   //Testing Purposes
-  @Put(':id')
-  updateUniversity(
-    @Body() _updateUniversityDto: CreateUniversityDto,
-    @Param('id') id,
-  ): string {
-    return `Update ${id} - Name: ${_updateUniversityDto.city.name}`;
-  }
+  // @Put(':id')
+  // updateUniversity(
+  //   @Body() _updateUniversityDto: CreateUniversityDto,
+  //   @Param('id') id,
+  // ): string {
+  //   return `Update ${id} - Name: ${_updateUniversityDto.city.name}`;
+  // }
 }

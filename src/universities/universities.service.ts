@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { findAllByAltText } from '@testing-library/react';
+import { CreateUniversityDto } from './dto/create-university.dto';
 import { University } from './interfaces/university.interface';
 
 @Injectable()
@@ -253,5 +253,25 @@ export class UniversitiesService {
 
   findUniversity(id: string): University {
     return this.universities.find((university) => university.id === id);
+  }
+
+  createUniversity(dto: CreateUniversityDto): University {
+    const indexID = `${this.universities.length + 1}`;
+
+    const newUniversity = {
+      id: indexID,
+      name: dto.name,
+      City: {
+        id: indexID,
+        name: dto.city,
+        State: {
+          id: '1',
+          name: dto.state,
+        },
+      },
+    };
+    this.universities.push(newUniversity);
+
+    return newUniversity;
   }
 }
