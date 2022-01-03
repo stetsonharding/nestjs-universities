@@ -1,16 +1,16 @@
-declare interface State {
-  id: string;
+declare interface state {
+  id: number;
   name: string;
 }
 
-declare interface City {
-  id: string;
+declare interface city {
+  id: number;
   name: string;
-  State: State;
+  state: state;
 }
 
 export interface University {
-  id: string;
+  id: number;
   name: string;
-  City: City;
+  city: city;
 }

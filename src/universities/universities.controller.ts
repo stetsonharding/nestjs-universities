@@ -18,8 +18,8 @@ export class UniversitiesController {
   //Get a single University
   //Takes in an id param, checks to see if an id matches id getting passed in
   @Get(':id')
-  findUniversity(@Param('id') id): University {
-    return this.universitiesService.findUniversity(id);
+  findUniversity(@Param('id') id: string): University {
+    return this.universitiesService.findUniversity(parseInt(id));
   }
 
   //Creates a university
@@ -30,11 +30,15 @@ export class UniversitiesController {
     return this.universitiesService.createUniversity(_createUniversityDto);
   }
 
+  //Updates University
   @Put(':id')
   update(
     @Param('id') id: string,
     @Body() _updateUniveristy: UpdateUniversityDto,
   ): University {
-    return this.universitiesService.UpdateUniversity(id, _updateUniveristy);
+    return this.universitiesService.UpdateUniversity(
+      parseInt(id),
+      _updateUniveristy,
+    );
   }
 }
