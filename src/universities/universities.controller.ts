@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Put, Body, Param } from '@nestjs/common';
 import { CreateUniversityDto } from './dto/create-university.dto';
+import { UpdateUniversityDto } from './dto/update-university.dto';
 import { UniversitiesService } from './universities.service';
 import { University } from './interfaces/university.interface';
 
@@ -29,12 +30,11 @@ export class UniversitiesController {
     return this.universitiesService.createUniversity(_createUniversityDto);
   }
 
-  //Testing Purposes
-  // @Put(':id')
-  // updateUniversity(
-  //   @Body() _updateUniversityDto: CreateUniversityDto,
-  //   @Param('id') id,
-  // ): string {
-  //   return `Update ${id} - Name: ${_updateUniversityDto.city.name}`;
-  // }
+  @Put(':id')
+  update(
+    @Param('id') id: string,
+    @Body() _updateUniveristy: UpdateUniversityDto,
+  ): University {
+    return this.universitiesService.UpdateUniversity(id, _updateUniveristy);
+  }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUniversityDto } from './dto/create-university.dto';
+import { UpdateUniversityDto } from './dto/update-university.dto';
 import { University } from './interfaces/university.interface';
 
 @Injectable()
@@ -273,5 +274,17 @@ export class UniversitiesService {
     this.universities.push(newUniversity);
 
     return newUniversity;
+  }
+
+  UpdateUniversity(
+    id: string,
+    updatedUniversityDto: UpdateUniversityDto,
+  ): University {
+    const updated = this.findUniversity(id);
+    updated.name = updatedUniversityDto.name;
+    updated.City.name = updatedUniversityDto.city;
+    updated.City.State.name = updatedUniversityDto.state;
+
+    return updated;
   }
 }
