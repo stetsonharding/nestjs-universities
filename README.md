@@ -31,7 +31,7 @@ http://localhost:3000/universities
 GET:
 http://localhost:3000/universities/id
 
-<!-- Create a new University -->
+<!-- Create a new University ---->
 
 POST:
 http://localhost:3000/universities
